@@ -1,3 +1,4 @@
+
 /*
  * *** Ben Aguirre COMP 400C 001 ***
  *
@@ -6,8 +7,6 @@
  * classes from the Java Collection Framework.
  *
  */
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class TreeProblems {

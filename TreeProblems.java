@@ -7,6 +7,7 @@
  *
  */
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class TreeProblems {
@@ -20,15 +21,18 @@ public class TreeProblems {
    */
 
   public static Set<Integer> different(Set<Integer> setA, Set<Integer> setB) {
+    // make tmp set to find the common elemenets (start with setA)
+    TreeSet<Integer> commonElements = new TreeSet<Integer>(setA);
+    // compare setA (common elements) to setB to see which elements are in both
+    commonElements.retainAll(setB);
+    // create res tree
+    TreeSet<Integer> resTree = new TreeSet<Integer>(setA);
+    // add all of set b to setA in result
+    resTree.addAll(setB);
+    // remove all common elements that are found above
+    resTree.removeAll(commonElements);
 
-    // INSERT CODE HERE - DO NOT FORGET TO PLACE YOUR NAME ABOVE
-    //
-    // This can be done numerous ways, but once such will only that
-    // *several* lines of code. Hint: create two temporary TreeSets and utilize the
-    // methods retainAll(), addAll(), and removeAll(). But in the end, get something
-    // to work.
-
-    return setA;
+    return resTree; // return resulting tree
   }
 
   /**
@@ -39,10 +43,21 @@ public class TreeProblems {
    */
 
   public static void removeEven(Map<Integer, String> treeMap) {
-
-    // INSERT CODE HERE.
-
-    return;
+    ArrayList<Integer> keys = new ArrayList<Integer>(); // create array to store keys
+    // lopo through treeMap
+    for (Map.Entry<Integer, String> mapElement : treeMap.entrySet()) {
+      int key = (int) mapElement.getKey();
+      if (key % 2 == 0) {
+        // original was removing here form key but was getting error
+        // instead add even key to an arraylist which we will loop through to delete
+        // after
+        keys.add(key);
+      }
+    }
+    // remove all even keys from treeMap
+    for (Integer key : keys) {
+      treeMap.remove(key);
+    }
   }
 
   /**
@@ -54,11 +69,24 @@ public class TreeProblems {
    */
 
   public boolean treesEqual(Map<Integer, String> tree1, Map<Integer, String> tree2) {
+    // check first if they are the same size
+    if (tree1.size() != tree2.size()) {
+      return false;
+    }
+    for (Map.Entry<Integer, String> mapElement : tree1.entrySet()) {
+      int key = (int) mapElement.getKey(); // get key
+      String tree1Value = mapElement.getValue(); // get value from tree1
+      String tree2Value = tree2.get(key); // get value from tree2
 
-    // INSERT CODE HERE
-
-    return false;
-
+      // compare the two string values
+      // if they are not equal early return fals
+      if (!tree1Value.equals(tree2Value)) {
+        return false;
+      }
+    }
+    // else we looped through all tree elements and none were different -> return
+    // truee
+    return true;
   }
 
 } // end treeProblems class

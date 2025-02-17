@@ -21,13 +21,12 @@ public class Main {
     public static void main(String[] args) {
 
         LUC_AVLTree tree = new LUC_AVLTree();
-        int     assignmentScore = 0;
+        int assignmentScore = 0;
         boolean avlErrorFlag = false;
         boolean removeEvenErrorFlag = false;
         boolean differentErrorFlag = false;
         boolean equalsErrorFlag = false;
-        String  treeContents;
-
+        String treeContents;
 
         System.out.println("Starting automated testing ...");
 
@@ -50,7 +49,7 @@ public class Main {
         treeContents = tree.preorderTraversal();
 
         // Validate Insertion worked correctly.
-        if ( ! treeContents.toString().equals("50 10 5 1 25 55 53 60 65 ") ) {
+        if (!treeContents.toString().equals("50 10 5 1 25 55 53 60 65 ")) {
             System.out.println("AVL TEST 1 - Failure (1): building tree properly failed!");
             avlErrorFlag = true;
         }
@@ -58,7 +57,7 @@ public class Main {
         // Delete a leaf node, no rotation caused.
         tree.delete(1);
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("50 10 5 25 55 53 60 65 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("50 10 5 25 55 53 60 65 ")) {
             System.out.println("AVL TEST 1 - Failure (2): deleting leaf failed!");
             avlErrorFlag = true;
         }
@@ -66,15 +65,16 @@ public class Main {
         // Delete another leaf node, no rotation caused.
         tree.delete(65);
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("50 10 5 25 55 53 60 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("50 10 5 25 55 53 60 ")) {
             System.out.println("AVL TEST 1 - Failure (3): deleting leaf failed!");
             avlErrorFlag = true;
         }
 
-        // Delete root node, no rotation caused, but next minimum value node brought to root
+        // Delete root node, no rotation caused, but next minimum value node brought to
+        // root
         tree.delete(50);
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("53 10 5 25 55 60 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("53 10 5 25 55 60 ")) {
             System.out.println("AVL TEST 1 - Failure (4): deleting root failed!");
             avlErrorFlag = true;
         }
@@ -82,15 +82,16 @@ public class Main {
         // Delete a leaf node, no rotation caused.
         tree.delete(5);
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("53 10 25 55 60 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("53 10 25 55 60 ")) {
             System.out.println("AVL TEST 1 - Failure (5): deleting leaf failed!");
             avlErrorFlag = true;
         }
 
-        // Delete an interior node, no rotation caused, next minimum value node replaces it
+        // Delete an interior node, no rotation caused, next minimum value node replaces
+        // it
         tree.delete(10);
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("53 25 55 60 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("53 25 55 60 ")) {
             System.out.println("AVL TEST 1 - Failure (6): deleting interior failed!");
             avlErrorFlag = true;
         }
@@ -114,7 +115,7 @@ public class Main {
         tree.delete(53); // Deletion will cause a RR rotation
 
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("50 10 5 1 25 60 55 65 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("50 10 5 1 25 60 55 65 ")) {
             System.out.println("AVL TEST 2 - Failure: Delete causing RR rotation failed!");
             avlErrorFlag = true;
         }
@@ -138,7 +139,7 @@ public class Main {
         tree.delete(25); // Deletion will cause a LL rotation
 
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("50 5 1 10 55 53 60 65 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("50 5 1 10 55 53 60 65 ")) {
             System.out.println("AVL TEST 3 - Failure: Delete causing LL rotation failed!");
             avlErrorFlag = true;
         }
@@ -162,11 +163,10 @@ public class Main {
         tree.delete(53); // Deletion will cause a RL rotation
 
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("50 10 5 6 25 57 55 60 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("50 10 5 6 25 57 55 60 ")) {
             System.out.println("AVL TEST 4 - Failure (1): Delete causing RL rotation failed!");
             avlErrorFlag = true;
         }
-
 
         tree.removeAll();
         tree.insert(45);
@@ -179,11 +179,10 @@ public class Main {
         tree.delete(35); // Deletion will cause a RL Rotation
 
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("53 45 40 52 60 65 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("53 45 40 52 60 65 ")) {
             System.out.println("AVL TEST 4 - Failure (2): Delete causing RL rotation failed!");
             avlErrorFlag = true;
         }
-
 
         /*****************************************************************
          *
@@ -204,11 +203,10 @@ public class Main {
         tree.delete(25); // Deletion will cause a LR rotation
 
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("50 6 5 10 55 53 60 57 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("50 6 5 10 55 53 60 57 ")) {
             System.out.println("AVL TEST 5 - Failure (1): Delete causing LR rotation failed!");
             avlErrorFlag = true;
         }
-
 
         tree.removeAll();
         tree.insert(45);
@@ -221,11 +219,10 @@ public class Main {
         tree.delete(51); // Deletion will cause a LR Rotation
 
         treeContents = tree.preorderTraversal();
-        if ( ! avlErrorFlag && ! treeContents.toString().equals("41 40 35 45 42 50 ") ) {
+        if (!avlErrorFlag && !treeContents.toString().equals("41 40 35 45 42 50 ")) {
             System.out.println("AVL TEST 5 - Failure (2): Delete causing LR rotation failed!");
             avlErrorFlag = true;
         }
-
 
         /*
          * Tree Problem Testing
@@ -256,13 +253,11 @@ public class Main {
         Iterator<Map.Entry<Integer, String>> iterator = ages.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<Integer, String> entry = iterator.next();
-            if ( entry.getKey() % 2 == 0 )
+            if (entry.getKey() % 2 == 0)
                 removeEvenErrorFlag = true;
             else
                 removeEvenCount++;
         }
-
-
 
         /*****************************************************************
          *
@@ -302,7 +297,6 @@ public class Main {
             differentCount++;
         }
 
-
         /*****************************************************************
          *
          * TEST 8 - Tree Problem Testing - TreeMap, equal testing
@@ -322,25 +316,24 @@ public class Main {
         tree2.put(10, "James");
         tree2.put(13, "Tony");
 
-        if ( ! equalsErrorFlag && problem.treesEqual(tree1, tree2) ) {
+        if (!equalsErrorFlag && problem.treesEqual(tree1, tree2)) {
             System.out.println("TreeMap TEST 8 - Failure (1): equals tests failed!");
             equalsErrorFlag = true;
         }
 
         tree2.put(15, "Britany");
 
-        if ( ! equalsErrorFlag && ! problem.treesEqual(tree1, tree2) ) {
+        if (!equalsErrorFlag && !problem.treesEqual(tree1, tree2)) {
             System.out.println("TreeMap TEST 8 - Failure (2): equals tests failed!");
             equalsErrorFlag = true;
         }
-
 
         /*
          * All automated tests complete, calculate and display final score
          */
 
         // Adjust assignment score for AVL testing
-        if ( ! avlErrorFlag ) {
+        if (!avlErrorFlag) {
             assignmentScore += 20;
             System.out.println("Automated AVL tests terminated                -- tests PASSED");
         } else {
@@ -348,7 +341,7 @@ public class Main {
         }
 
         // Adjust assignment score for TreeMap removeEven testing
-        if ( ! removeEvenErrorFlag && removeEvenCount == 3 ) {
+        if (!removeEvenErrorFlag && removeEvenCount == 3) {
             assignmentScore += 25;
             System.out.println("Automated TreeMap removeEven tests terminated -- tests PASSED");
         } else {
@@ -356,7 +349,7 @@ public class Main {
         }
 
         // Adjust assignment score for TreeMap removeEven testing
-        if ( ! differentErrorFlag && differentCount == 4 ) {
+        if (!differentErrorFlag && differentCount == 4) {
             assignmentScore += 30;
             System.out.println("Automated TreeSet difference tests terminated -- tests PASSED");
         } else {
@@ -364,7 +357,7 @@ public class Main {
         }
 
         // Adjust assignment score for TreeMap equals testing
-        if ( ! equalsErrorFlag ) {
+        if (!equalsErrorFlag) {
             assignmentScore += 25;
             System.out.println("Automated TreeMap equals tests terminated     -- tests PASSED");
         } else {
